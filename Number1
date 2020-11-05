@@ -10,7 +10,7 @@ public class Number1 {
 		
 		int sum = 0;
 		
-		for (int a = 1000; a > 0; a--)
+		for (int a = 999; a > 0; a--)
 			if (a % 5 == 0 || a % 3 == 0)
 				sum += a;
 		
