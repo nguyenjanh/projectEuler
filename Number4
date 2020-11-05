@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+
+public class Number4 {
+
+	public static boolean isPalindrome(int num) {
+		
+		ArrayList<Integer> nums = new ArrayList<Integer>();
+		
+		while (num != 0) {
+			nums.add(num % 10);
+			num /= 10;
+		}
+				
+		for (int a = 0; a < nums.size()/2; a++)
+			if (nums.get(a) != nums.get(nums.size() - a - 1))
+				return false;
+		
+		return true;
+	}
+	
+	public static void main(String[] args) {
+		
+		/*A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+		 *Find the largest palindrome made from the product of two 3-digit numbers.
+		 */
+
+		final long startTime = System.currentTimeMillis();
+		
+		int largest = 0;
+		
+		for (int a = 999; a > 100; a--) {
+			for (int b = 999; b > 100; b--) {
+				if (isPalindrome(a * b)) {
+					if (a * b > largest)
+						largest = a * b;
+				}
+			}
+		}
+		
+		System.out.println(largest);
+		
+		final long endTime = System.currentTimeMillis();
+
+		System.out.println("Total execution time: " + (endTime - startTime) + "ms");
+		
+		
+	}
+
+}
