@@ -1,0 +1,40 @@
+public class Number12 {
+
+	public static int triangleNum(int num) {
+		int total = 0;
+		for (int a = 1; a <= num; a++) {
+			total += a;
+		}
+		return total;
+	}
+	
+	public static int numOfDivisors(int num) {
+		int total = 0;
+		if (num == 1) return num;
+		if (num % 2 == 0) total++;
+		for (int a = 1; a <= Math.sqrt(num); a++)
+			if (num % a == 0)
+				total += 2;
+		return total;
+	}
+	
+	public static void main(String[] args) {
+		
+		//What is the value of the first triangle number to have over five hundred divisors?
+		
+		final long startTime = System.currentTimeMillis();
+		
+		for (int a = 1; a > 0; a++) {
+			if (numOfDivisors(triangleNum(a)) > 500) {
+				System.out.println(triangleNum(a));
+				break;
+			}
+		}
+		
+		final long endTime = System.currentTimeMillis();
+
+		System.out.println("Total execution time: " + (endTime - startTime) + "ms");
+		
+	}
+
+}
