@@ -1,0 +1,41 @@
+public class Number14 {
+	
+	public static int collatz(long num) {
+		int count = 0;
+		while (num != 1) {
+			if (num % 2 == 0)
+				num /= 2;
+			else
+				num = (3 * num) + 1;
+			count++;
+		}
+		return count + 1;
+	}
+	
+	public static void main(String[] args) {
+		
+		//Which starting number, under one million, produces the longest chain?
+		
+		final long startTime = System.currentTimeMillis();
+		
+		long largest = 0, highest = 0;
+		
+		for (long a = 1; a < 1000000; a++) {
+			
+			long count = collatz(a);
+			
+			if (count > largest) {
+				largest = count;
+				highest = a;
+			}
+		}
+		
+		System.out.println(highest);
+		
+		final long endTime = System.currentTimeMillis();
+
+		System.out.println("Total execution time: " + (endTime - startTime) + "ms");
+		
+	}
+
+}
