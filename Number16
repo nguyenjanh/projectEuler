@@ -1,0 +1,10 @@
+#What is the sum of the digits of the number 2^1000?
+
+str = str(2 ** 1000)
+num = 0
+
+while (len(str) > 0) :
+    num += int(str[:1])
+    str = str[1:]
+
+print(num)
