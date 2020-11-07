@@ -1,0 +1,15 @@
+def factorial(num) :
+    if (num <= 1) :
+        return num
+    return factorial(num - 1) * num
+
+def sumDigits(str) :
+    count = 0
+    while (len(str) > 0) :
+        count += int(str[:1])
+        str = str[1:]
+    return count
+
+#Find the sum of the digits in the number 100!
+
+print(sumDigits(str(factorial(100))))
