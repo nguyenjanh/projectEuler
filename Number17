@@ -1,0 +1,86 @@
+package javaPrograms;
+
+public class Number17 {
+
+	public static int ones(int num) {
+		//zero
+		if (num == 0)
+			return 0;
+		//one two six
+		if (num == 1 || num == 2 || num == 6)
+			return 3;
+		//four five nine
+		if (num == 4 || num == 5 || num == 9)
+			return 4;
+		//three seven eight
+		return 5;
+	}
+	
+	public static int tensThroughTwenty(int num) {
+		//eleven twelve
+		if (num == 11 || num == 12)
+			return 6;
+		//thirteen fourteen eighteen nineteen
+		if (num == 13 || num == 14 || num == 18 || num == 19)
+			return 8;
+		//fifteen sixteen 
+		if (num == 15 || num == 16)
+			return 7;
+		//seventeen
+		if (num == 17)
+			return 9;
+		//ten
+		return 3;
+	}
+	
+	public static int tens(int num) {
+		if (num <= 9)
+			return ones(num);
+		if (num <= 19)
+			return tensThroughTwenty(num);
+		//seventy
+		if (num / 10 == 7)
+			return 7 + ones(num % 10);
+		///fifty sixty forty
+		if (num / 10 == 4 ||num / 10 == 5 || num / 10 == 6)
+			return 5 + ones(num % 10);
+		//twenty thirty eighty ninety
+		return 6 + ones(num % 10);
+	}
+	
+	public static int control(int num) {
+		if (num < 100)
+			return tens(num);
+		else
+			return ones(num / 100) + tens(num % 100);
+	}
+	
+	public static void main(String[] args) {
+		
+		//If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
+
+		final long startTime = System.currentTimeMillis();
+
+		int count = 11; //start at eleven to account for one thousand
+		
+		for (int a = 1; a < 1000; a++) {
+			
+			if (a > 99) {
+				if (a % 100 == 0) {
+					count += 7; //hundred
+				} else {
+					count += 10; //hundred and
+				}
+			}
+			count += control(a);
+		}
+		
+		System.out.println(count);
+		
+		final long endTime = System.currentTimeMillis();
+
+		System.out.println("Total execution time: " + (endTime - startTime) + "ms");
+
+	}
+
+}
