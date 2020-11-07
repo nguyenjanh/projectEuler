@@ -1,0 +1,39 @@
+package javaPrograms;
+
+public class Number21 {
+
+	public static int amicableNum(int num) {
+		
+		int count = 0;
+		
+		for (int a = 1; a < num / 2 + 1; a++)
+			if (num % a == 0)
+				count += a;
+		
+		return count;
+	}
+	
+	public static void main(String[] args) {
+		
+		//Evaluate the sum of all the amicable numbers under 10000.
+		
+		final long startTime = System.currentTimeMillis();
+
+		int sum = 0;
+		
+		for (int a = 2; a < 10000; a++) {
+			
+			if (amicableNum(amicableNum(a)) == a && amicableNum(a) != a) {
+				sum += a;
+			}
+		}
+		
+		System.out.println(sum);
+		
+		final long endTime = System.currentTimeMillis();
+
+		System.out.println("Total execution time: " + (endTime - startTime) + "ms");
+		
+	}
+
+}
