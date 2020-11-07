@@ -1,0 +1,66 @@
+package javaPrograms;
+
+public class Number19 {
+
+	public static boolean isLeapYear(int num) {
+		if (num % 100 == 0 && num % 400 != 0)
+			return false;
+		if (num % 4 == 0)
+			return true;
+		return false;
+	}
+	
+	public static boolean isFirstOfMonth(int num, boolean isLeapYear) {
+
+		int[] daysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+		if (isLeapYear)
+			daysOfMonth[1] = 29;
+		
+		int day = 0;
+		
+		for (int a = 0; a < daysOfMonth.length; a++) {
+			if (day == num)
+				return true;
+			day += daysOfMonth[a];
+		}
+		return false;
+	}
+	
+	public static void main(String[] args) {
+		
+		//How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+		
+		final long startTime = System.currentTimeMillis();
+		
+		int totalDays = 0, dayOfWeek = 1, dayOfYear = 0, numOfSundays = 0;
+		
+		for (int year = 1901; year <= 2000; year++) {
+			
+			if (isLeapYear(year))
+				totalDays = 366;
+			else
+				totalDays = 365;
+			
+			for (int day = 0; day <= totalDays; day++) {
+				
+				if (dayOfWeek == 0 && isFirstOfMonth(day, isLeapYear(year)))
+					numOfSundays++;
+				
+				dayOfWeek++;
+				
+				if (dayOfWeek > 6)
+					dayOfWeek = 0;
+				
+			}
+		}
+		
+		System.out.println(numOfSundays);
+		
+		final long endTime = System.currentTimeMillis();
+
+		System.out.println("Total execution time: " + (endTime - startTime) + "ms");
+		
+	}
+
+}
