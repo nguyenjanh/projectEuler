@@ -1,0 +1,87 @@
+import java.util.ArrayList;
+
+public class Number23 {
+
+	public static boolean isAbundant(int num) {
+		
+        int sum = 1;
+        int upper = (int) Math.sqrt(num);
+
+        for (int a = 2; a <= upper; a++)
+            if (num % a == 0) {
+                sum += a;
+                if (a * a != num)
+                    sum += num / a;
+            }
+        if(sum > num) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+	
+	public static boolean binarySearch(ArrayList<Integer> sums, int min, int max, int num) {
+		
+		int mid = 0;
+		
+		if (max >= min) {
+			
+			mid = (int) (((max + min) + 0.5) / 2);
+			
+			int current = sums.get(mid);
+			
+			if (current == num)
+				return true;
+			
+			if (current > num) 
+				return binarySearch(sums, min, mid - 1, num);
+			else
+				return binarySearch(sums, mid + 1, max, num);
+		}
+		return false;
+	}
+	
+	public static void main(String[] args) {
+		
+		//Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
+		
+		ArrayList<Integer> nums = new ArrayList<Integer>();
+		ArrayList<Integer> sums = new ArrayList<Integer>();
+		
+		long total = 0;
+		
+		final long startTime = System.currentTimeMillis();
+		
+		for (int a = 12; a <= 28123; a++)
+			if (isAbundant(a))
+				nums.add(a);
+		
+		sums.add(Integer.MIN_VALUE);
+		sums.add(Integer.MAX_VALUE);
+		
+		for (int b = 0; b < nums.size(); b++)
+			for (int c = b; c < nums.size(); c++) {
+				int current = nums.get(b) + nums.get(c);
+				if (current <= 28123 && !binarySearch(sums, 0, sums.size() - 1, current))
+					for (int d = 0; d < sums.size() - 1; d++)
+						if (sums.get(d) < current && sums.get(d + 1) > current) {
+							sums.add(d + 1, current);
+							break;
+						}
+				if (current > 28123)
+					break;
+			}
+		
+		for (int e = 1; e < 28123; e++)
+			if (!binarySearch(sums, 0, sums.size() - 1, e))
+				total += e;
+		
+		System.out.println(total);
+		
+		final long endTime = System.currentTimeMillis();
+
+		System.out.println("Total execution time: " + (endTime - startTime) + "ms");
+		
+	}
+
+}
