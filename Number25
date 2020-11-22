@@ -1,0 +1,17 @@
+#What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
+
+list = [0,1]
+
+current = 2
+
+while True:
+    
+    num = list[current - 1] + list[current - 2]
+    
+    if (num > 10**999) :
+        print(current)
+        break
+    
+    list.append(num)
+    
+    current += 1
