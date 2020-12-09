@@ -1,0 +1,28 @@
+public class Problem28 {
+
+	public static void main(String[] args) {
+		
+		//What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
+		
+		int spacing = 2, size = 3, corner = 0, total = 1;
+		
+		for (int current = 3; size <= 1001; current += spacing) {
+			
+			total += current;
+			corner++;
+			
+			if (corner == 4) {
+				
+				corner = 0;
+				spacing += 2;
+				size += 2;
+				
+			}
+			
+		}
+
+		System.out.println(total);
+		
+	}
+
+}
