@@ -1,0 +1,25 @@
+package javaProblems;
+
+import java.util.ArrayList;
+
+public class Number29 {
+
+	public static void main(String[] args) {
+		
+		ArrayList<Double> nums = new ArrayList<Double>();
+		
+		for (int a = 2; a < 101; a++)
+			for (int b = 2; b < 101; b++) {
+				
+				double newNum = Math.pow(a, b);
+				
+				if (!nums.contains(newNum))
+					nums.add(newNum);
+					
+			}
+
+		System.out.println(nums.size());
+		
+	}
+
+}
