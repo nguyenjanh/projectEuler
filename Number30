@@ -1,0 +1,32 @@
+package javaProblems;
+
+public class Problem30 {
+
+	public static int findPowers(int num, int power) {
+		
+		int total = 0;
+		
+		while (num != 0) {
+			
+			total += Math.pow(num % 10, power);
+			num /= 10;
+			
+		}
+		
+		return total;
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		int sum = 0;
+		
+		for (int a = 2; a < 1000000; a++)
+			if (a == findPowers(a, 5))
+				sum += a;
+		
+		System.out.println(sum);
+
+	}
+
+}
